@@ -6,7 +6,7 @@ var bodyParser = require('body-parser');
 
 
 
-const port = process.env.PORT || 3030;
+const port = process.env.PORT || 5050;
 const logger = require('./config/logger')
 
 
@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 
 
 
-mongoose.connect('mongodb+srv://TARIK:tarekm@cluster0.vagtk.mongodb.net/marketplace?retryWrites=true&w=majority' , {
+mongoose.connect('mongodb://localhost:27017/FournisseurSafi' , {
   useNewUrlParser: true
 }).then(() => {
   console.log("Successfully connected to the database");    
@@ -44,21 +44,17 @@ mongoose.connect('mongodb+srv://TARIK:tarekm@cluster0.vagtk.mongodb.net/marketpl
 
 
 // _______________import router_______________ 
-// const SuperAdminRoutes = require("./routes/superAdmin.router");
-// const AdminRoutes = require("./routes/Admin.router");
-// const SellerRoutes = require("./routes/Seller.router");
-// const CustomerRoutes = require("./routes/Customer.router");
-// const ProductRoutes = require("./routes/Product.router");
-// const ChekoutRoutes = require("./routes/Checkout.router")
-// const BuyAccountRoutes = require("./routes/BuyAccount.router")
+const SuperAdminRoutes = require("./routes/SuperAdmin.router");
+const FournisseurRoutes = require("./routes/Fournisseur.router");
+const CustomerRoutes = require("./routes/Customer.router");
 
-// app.use('/superAdmin',SuperAdminRoutes);
-// app.use('/Admin',AdminRoutes);
-// app.use('/Seller',SellerRoutes);
-// app.use('/Customer',CustomerRoutes);
+
+
+app.use('/superAdmin',SuperAdminRoutes);
+app.use('/fournisseur',FournisseurRoutes);
+app.use('/Customer',CustomerRoutes);
 // app.use('/Product',ProductRoutes);
-// app.use('/Checkout', ChekoutRoutes);
-// app.use('/BuyAccount', BuyAccountRoutes);
+
 
 
 

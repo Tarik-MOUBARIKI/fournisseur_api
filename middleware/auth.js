@@ -35,7 +35,7 @@ function verifyToken(req, res, next) {
           return res.status(403).json({
               error: "Admin Ressource, Access Denied"
           })
-      }else if(req.auth.role == "Admin"){
+      }else if(req.auth.role == "Customer"){
         return next()
       }
   }
@@ -45,7 +45,7 @@ function verifyToken(req, res, next) {
           return res.status(403).json({
               error: "SELLER Ressource, Access Denied"
           })
-      }else if(req.auth.role == "Seller"){
+      }else if(req.auth.role == "Fournisseur"){
         return next()
       }
   }
