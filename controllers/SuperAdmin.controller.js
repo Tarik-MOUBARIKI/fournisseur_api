@@ -62,6 +62,42 @@ const loginSuperAdmin = (req, res) => {
         }
         }).catch((err) => res.status(400).json("Error :" + err));
         }
+  // ---------------------add fournisseur------------------
+        const addFournisseur = (req, res) => {
+
+
+  
+          bcrypt.hash(req.body.password, 10, function (err, hashPassword) {
+              if (err) {
+                  res.json({
+                      error: err
+                  })
+              }
+              const fullName = req.body.fullName;
+              const email = req.body.email;
+              const login = req.body.login;
+              const password = hashPassword;
+              const company = req.body.company
+              const status = "InActive";
+         
+              const FournisseurPush = new Fournisseur({
+                  fullName,
+                  email,
+                  login,
+                  password,              
+                  status,
+                  company
+                  
+              });
+                  let result =  FournisseurPush.save();
+                  res.send(result)
+          //     FournisseurPush
+              
+          //         .save()
+          //         .then(() => res.json("Fournisseur authentication successfully Please Wait untill Admin ACCEPTER Your Account"))
+          //         .catch((err) => res.status(400).json("Error :" + err));
+          });
+      }
 //______________________ get all Fournisseur _____________________ 
 const getAllFournisseur= (req, res) => {
     Fournisseur.find()
@@ -139,23 +175,22 @@ const getFournisseurById = (req, res) => {
 
 
  //______________________Add Categorie _____________________ 
- const addCategorie = (req,res) =>{
+ const addCategorie = async(req,res) =>{
     
     const nameCategorie= req.body.nameCategorie;
     const imageCategorie= req.body.imageCategorie;
     const description= req.body.description;
 
    
-    const CategoriePush = new Product({
+    const CategoriePush = new Categorie({
           nameCategorie,
           description,
           imageCategorie,
      });
    //Save
-   CategoriePush
-   .save()
-   .then(() => res.status(201).json("Categorie added successfully"))
-   .catch((err) => res.status(400).json("Error :" + err));
+   
+   let result = await CategoriePush.save();
+   res.send(result)
    
    };
    //______________________get all Categorie _____________________ 
@@ -227,5 +262,5 @@ const getFournisseurById = (req, res) => {
    };
 
 module.exports={
-    addSuperAdmin, loginSuperAdmin,getAllFournisseur,updateFournisseur,getFournisseurById,deleteFournisseur,logout,  addCategorie,getAllCategorie,deleteCategorie,updateCategorie,getCategorieById
+    addSuperAdmin, loginSuperAdmin,addFournisseur,getAllFournisseur,updateFournisseur,getFournisseurById,deleteFournisseur,logout,  addCategorie,getAllCategorie,deleteCategorie,updateCategorie,getCategorieById
 };

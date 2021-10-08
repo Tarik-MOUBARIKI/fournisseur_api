@@ -20,7 +20,7 @@ const addCustomer = async (req, res) => {
         const email = req.body.email;
         const login = req.body.login;
         const password = hashPassword;
-        const role = "Customer";
+        const role = "Epicier";
         const status = "InValide";
         const verified = false;      
         const CustomerPush = new Customer({
@@ -44,18 +44,18 @@ const addCustomer = async (req, res) => {
     const transport = nodemailer.createTransport({
       service: "gmail",
           auth: {
-            user: '',//email
-            pass: ''//password
+            user: 'tarek.brief@gmail.com',//email
+            pass: 'brief@2021'//password
           }
       })
     
       await transport.sendMail({
-          from: '',
+          from: 'tarek.brief@gmail.com',
           to: req.body.email,
           subject: "Email Activated Account",
           html: `
           <h2>Please click on below link to activate your account</h2>
-          <p></p>
+          <p>http://localhost:3000/customer/activateCompte/${token}</p>
       `
       })
   
@@ -115,7 +115,9 @@ const loginCustomer = (req, res) => {
                 // res.cookie("role", role)
                 res.json({
                   token: token,
-                  role: Customer.role
+                  role: Customer.role,
+                  id:Customer._id,
+                  verified:Customer.verified,
                 })
               })
             }

@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-const Product = new Schema(
+const ProductPromo = new Schema(
     {
         titel : {
             type : String,
@@ -19,7 +19,12 @@ const Product = new Schema(
             required : true,
             trim : true,
         },
-        price : {
+        oldPrice : {
+            type : Number,
+            required : true,
+            trim : true,
+        },
+        newPrice : {
             type : Number,
             required : true,
             trim : true,
@@ -46,5 +51,5 @@ const Product = new Schema(
     }
 );
 
-const productList = mongoose.model("Product",Product);
-module.exports = productList;
+const productPromoList = mongoose.model("ProductPromo",ProductPromo);
+module.exports = productPromoList;

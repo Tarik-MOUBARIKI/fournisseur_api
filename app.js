@@ -47,14 +47,14 @@ mongoose.connect('mongodb://localhost:27017/FournisseurSafi' , {
 const SuperAdminRoutes = require("./routes/SuperAdmin.router");
 const FournisseurRoutes = require("./routes/Fournisseur.router");
 const CustomerRoutes = require("./routes/Customer.router");
-
-
+const ProductRoutes = require("./routes/Product.router");
+const ProductPromoRoutes = require("./routes/ProductPromo.router");
 
 app.use('/superAdmin',SuperAdminRoutes);
 app.use('/fournisseur',FournisseurRoutes);
-app.use('/Customer',CustomerRoutes);
-// app.use('/Product',ProductRoutes);
-
+app.use('/customer',CustomerRoutes);
+app.use('/product',ProductRoutes);
+app.use('/productPromo',ProductPromoRoutes);
 
 
 
