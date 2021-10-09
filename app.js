@@ -49,13 +49,13 @@ const FournisseurRoutes = require("./routes/Fournisseur.router");
 const CustomerRoutes = require("./routes/Customer.router");
 const ProductRoutes = require("./routes/Product.router");
 const ProductPromoRoutes = require("./routes/ProductPromo.router");
-
+const CartRoutes = require("./routes/Cart.router");
 app.use('/superAdmin',SuperAdminRoutes);
 app.use('/fournisseur',FournisseurRoutes);
 app.use('/customer',CustomerRoutes);
 app.use('/product',ProductRoutes);
 app.use('/productPromo',ProductPromoRoutes);
-
+app.use('/cart',CartRoutes);
 
 
 

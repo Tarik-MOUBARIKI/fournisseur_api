@@ -87,10 +87,10 @@ const loginCustomer = (req, res) => {
     Customer.findOne({
         login: login
       })
-      .then(Customer => {
+      .then(customer => {
   
-        if (Customer) {
-          bcrypt.compare(password, Customer.password, function (err, result) {
+        if (customer) {
+          bcrypt.compare(password, customer.password, function (err, result) {
             if (err) {
               res.json({
                 error: err
@@ -98,13 +98,13 @@ const loginCustomer = (req, res) => {
             }
             if (result) {
 
-              if(Customer.verified == false){
+              if(customer.verified == false){
                 res.json({
                   verified: 'InActive'
                   })
-            }if(Customer.role != "Customer"){
+            }if(customer.role != "Epicier"){
               res.json({
-                role: Customer.role
+                role: customer.role
                 })
           }else{
 
@@ -115,9 +115,9 @@ const loginCustomer = (req, res) => {
                 // res.cookie("role", role)
                 res.json({
                   token: token,
-                  role: Customer.role,
-                  id:Customer._id,
-                  verified:Customer.verified,
+                  role: customer.role,
+                  id:customer._id,
+                  verified:customer.verified,
                 })
               })
             }

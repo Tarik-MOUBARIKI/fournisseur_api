@@ -16,7 +16,7 @@ const Product = require('../models/Product.model');
   };
   
   
-  //________________________Get Product By category ____________________
+  //________________________ Get Product By category ____________________
   const getProductByCategory = (req, res) => {
     Product.find({
         category: req.params.id
